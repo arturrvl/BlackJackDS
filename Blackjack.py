@@ -22,8 +22,10 @@ while d > 0 and d >= a:
       if carta == "J" or carta == "Q" or carta == "K":
         soma+= 10
       elif carta == "A":
-        if soma >= 11:soma+= 1
-        else: soma+= 11
+        if soma >= 11:
+            soma+= 1
+        else: 
+            soma+= 11
       else: 
         soma += carta
       j+=1
@@ -64,8 +66,10 @@ while d > 0 and d >= a:
         soma_CPU+= 10
         h+=1
       elif carta_CPU == "A":
-        if soma_CPU >= 11:soma_CPU+= 1
-        else: soma_CPU+= 11
+        if soma_CPU >= 11:
+            soma_CPU+= 1
+        else: 
+            soma_CPU+= 11
         h+=1
       else: 
         soma_CPU += carta_CPU
@@ -78,8 +82,10 @@ while d > 0 and d >= a:
         if carta_novaCPU == "J" or carta_novaCPU == "Q" or carta_novaCPU == "K":
             soma_CPU += 10
         elif carta_novaCPU == "A":
-            if soma_CPU >= 11:soma_CPU += 1
-            else: soma_CPU += 1
+            if soma_CPU >= 11:
+                soma_CPU += 1
+            else: 
+                soma_CPU += 1
         else:
             soma_CPU += carta_novaCPU
         print (carta_novaCPU)
