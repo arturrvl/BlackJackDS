@@ -30,7 +30,22 @@ while d > 0 and d >= a:
         soma += carta
       j+=1
     print ('Sua soma é', soma)
-    
+
+    mao_CPU = []
+    for i in range(2):
+          random.shuffle(deck)
+          carta_CPU = deck.pop()
+          mao_CPU.append(carta_CPU)
+    print (mao_CPU)
+
+    print ("O dealer virou a carta", mão_CPU[0])
+    ajuda = input("Você deseja receber ajuda no que fazer?(sim/não)")
+
+    if ajuda == "sim":
+        if soma <= 11:
+            print("Uhmm. Acho que você deveria comprar mais uma carta.")
+        elif soma >= 12 and mão_CPU[0] <= 6:
+            print("Uhmm. Acho que você não deveria comprar mais cartas.") 
 
     while soma < 21:
         n = input('Quer comprar outra carta?(sim/não): ')
@@ -42,7 +57,8 @@ while d > 0 and d >= a:
             if carta_nova == "J" or carta_nova == "Q" or carta_nova == "K":
                 soma+= 10
             elif carta_nova == "A":
-                if soma >= 11:soma+= 1
+                if soma >= 11:
+                    soma+= 1
                 else: soma+= 11
             else:
                 soma += carta_nova
@@ -50,13 +66,6 @@ while d > 0 and d >= a:
         if n == 'não':
             print ('Você está prestes a apostar com', soma)
             break
-    
-    mao_CPU = []
-    for i in range(2):
-          random.shuffle(deck)
-          carta_CPU = deck.pop()
-          mao_CPU.append(carta_CPU)
-    print (mao_CPU)
     
     h = 0
     soma_CPU = 0
