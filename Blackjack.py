@@ -4,8 +4,7 @@ dois_jogadores = input("Você gostaria de jogar em duas pessoas?(sim/não): ")
 #Jogo para dois
 if dois_jogadores == "sim":
     jogador_1 = input("Qual nome do primeiro jogador?: ")
-    jogador_2 = input("Qual nome do segundo jogador?: "
-
+    jogador_2 = input("Qual nome do segundo jogador?: ")
     d_jogador1 = 1000
     aposta_1 = 0
     d_jogador2 = 1000
