@@ -39,9 +39,11 @@ while d > 0 and d >= a:
 
     print ("O dealer virou a carta", mao_CPU[0])
 
-    if mao_CPU[0] == "Q" or mao_CPU[0] == "J" mao_CPU[0] == "K" :
-        mao_CPU = 10
-        
+    if mao_CPU[0] == "Q" or mao_CPU[0] == "J" or mao_CPU[0] == "K" :
+        mao_CPU[0] = 10
+    elif mao_CPU[0] == "A":
+        mao_CPU[0] = 11
+    
     while soma < 21:
         ajuda = input("Você deseja receber ajuda no que fazer?(sim/não)")
 
