@@ -11,7 +11,7 @@ if dois_jogadores == "sim":
     aposta_2 = 0
     print ("Ok, vocês tem 1000 dinheiros cada para apostar. {0}, você começa jogando e depois é o(a) {1}".format(jogador_1, jogador_2))
  #Jogada jogador 1
-    aposta_1 = int(input("{0} quanto você quer apostar?"))
+    aposta_1 = int(input("{0} quanto você quer apostar?".format(jogador_1)))
     while d_jogador1 > 0 and d_jogador1 >= aposta_1:
         b = int(input('Com quantos baralhos deseja jogar?: '))
         deck = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"]*4*b + ["$"]
