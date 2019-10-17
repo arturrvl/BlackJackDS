@@ -10,33 +10,41 @@ if dois_jogadores == "sim":
     d_jogador2 = 1000
     aposta_2 = 0
     print ("Ok, vocês tem 1000 dinheiros cada para apostar. {0}, você começa jogando e depois é o(a) {1}".format(jogador_1, jogador_2))
-    #Jogada jogador 1
+ #Jogada jogador 1
     aposta_1 = int(input("{0} quanto você quer apostar?"))
     while d_jogador1 > 0 and d_jogador1 >= aposta_1:
         b = int(input('Com quantos baralhos deseja jogar?: '))
-        deck = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"]*4*b
+        deck = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"]*4*b + ["$"]
         mao = []
         
-        for i in range(2):
+    
+        j = 0
+        soma_1 = 0
+        while j < 2:
             random.shuffle(deck)
             carta = deck.pop()
             mao.append(carta)
-        print (mao)
-        
-        j = 0
-        soma_1 = 0
-        while j < len(mao):
-        carta = mao[j]
-        if carta == "J" or carta == "Q" or carta == "K":
-            soma_1 += 10
-        elif carta == "A":
-            if soma_1 >= 11:
-                soma_1 += 1
+            carta = mao[j]
+            if carta == "J" or carta == "Q" or carta == "K":
+                soma_1 += 10
+            
+            elif carta == "A":
+                if soma_1 >= 11:
+                    soma_1 += 1
+                else:
+                    soma_1 += 11
+                    
+                    
+            elif carta == "$":
+                d += a**2
+                print('Voce ganhou o dobro da sua aposta! Voce tem direito de tirar mais uma carta. Se valor atual é',d)
+                mao.pop()
+                j -= 1
+#caso ele nao receba o $   
             else: 
-                soma_1 += 11
-        else: 
-            soma_1 += carta
-        j+=1
+                soma_1 += carta
+            j+=1
+        print(mao)
         print ('Sua soma é', soma_1)
 
         mao_CPU = []
@@ -87,7 +95,7 @@ if dois_jogadores == "sim":
         h = 0
         soma_CPU = 0
         while h < len(mao_CPU):
-        carta_CPU = mao_CPU[h]
+            carta_CPU = mao_CPU[h]
         if carta_CPU == "J" or carta_CPU == "Q" or carta_CPU == "K":
             soma_CPU+= 10
             h+=1
@@ -150,6 +158,7 @@ if dois_jogadores == "sim":
                 break   
         elif soma_CPU == 21:
             d = d - a
+            valor_perdido += a
             print ('Perdeu! agora você possui', d)
             r = input('Quer jogar novamente?(sim/não): ')
             if r == 'sim':
@@ -160,6 +169,7 @@ if dois_jogadores == "sim":
         else:
             if total > total_CPU:
                 d = d - a
+                valor_perdido += d
                 print ('Perdeu! agora você possui', d)
                 r = input('Quer jogar novamente?(sim/não): ')
                 if r == 'sim':
@@ -185,33 +195,42 @@ if dois_jogadores == "sim":
                     print ('Você saiu com', d)
                     break
 #Jogada jogador 2
-    aposta_2 = int(input("Ok {0}. Agora é sua vez, quanto você deseja apostar?: "))
+    aposta_2 = int(input("Ok {0}. Agora é sua vez, quanto você deseja apostar?: ".format(jogador_20)))
     while d_jogador2 > 0 and d_jogador2 >= aposta_2:
             b = int(input('Com quantos baralhos deseja jogar?: '))
-            deck = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"]*4*b
+            deck = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"]*4*b + ["$"]
             mao = []
-            
-            for i in range(2):
-                random.shuffle(deck)
-                carta = deck.pop()
-                mao.append(carta)
-            print (mao)
             
             j = 0
             soma_2 = 0
-            while j < len(mao):
+            while j < 2:
+                random.shuffle(deck)
+                carta = deck.pop()
+                mao.append(carta)
                 carta = mao[j]
-            if carta == "J" or carta == "Q" or carta == "K":
-                soma_2 += 10
-            elif carta == "A":
-                if soma_2 >= 11:
-                    soma_2 += 1
+                if carta == "J" or carta == "Q" or carta == "K":
+                    soma_2 += 10
+                
+                elif carta == "A":
+                    if soma_2 >= 11:
+                        soma_2 += 1
+                    else: 
+                        soma_2+= 11
+                elif carta == "$":
+                    d += a**2
+                    print('Voce ganhou o dobro da sua aposta! Voce tem direito de tirar mais uma carta. Se valor atual é',d)
+                    mao.pop()
+                    j -= 1
+ #caso ele nao receba o $           
                 else: 
-                    soma_2+= 11
-            else: 
-                soma_2 += carta
-            j+=1
+                    soma_2 += carta
+                j+=1
+            print(mao)
             print ('Sua soma é', soma_2)
+            
+            if mao[0] == mao[1]:
+                print('Voce tirou duas cartas iguais, então ira receber todo seu dinheiro perdido de volta', valor_perdido )
+                d = d + valor_perdido
 
             mao_CPU = []
             for i in range(2):
@@ -262,13 +281,13 @@ if dois_jogadores == "sim":
             h = 0
             soma_CPU = 0
             while h < len(mao_CPU):
-            carta_CPU = mao_CPU[h]
-            if carta_CPU == "J" or carta_CPU == "Q" or carta_CPU == "K":
-                soma_CPU+= 10
-                h+=1
-            elif carta_CPU == "A":
-                if soma_CPU >= 11:
-                    soma_CPU+= 1
+                carta_CPU = mao_CPU[h]
+                if carta_CPU == "J" or carta_CPU == "Q" or carta_CPU == "K":
+                    soma_CPU+= 10
+                    h+=1
+                elif carta_CPU == "A":
+                    if soma_CPU >= 11:
+                        soma_CPU+= 1
                 else: 
                     soma_CPU+= 11
                 h+=1
@@ -307,6 +326,7 @@ if dois_jogadores == "sim":
                     break
             elif soma_2 > 21:
                 d = d - a
+                valor_perdido += a
                 print ('Perdeu! agora você possui', d)
                 r = input('Quer jogar novamente?(sim/não): ')
                 if r == 'sim':
@@ -325,6 +345,7 @@ if dois_jogadores == "sim":
                     break   
             elif soma_CPU == 21:
                 d = d - a
+                valor_perdido += a
                 print ('Perdeu! agora você possui', d)
                 r = input('Quer jogar novamente?(sim/não): ')
                 if r == 'sim':
@@ -335,6 +356,7 @@ if dois_jogadores == "sim":
             else:
                 if total > total_CPU:
                     d = d - a
+                    valor_perdido += d
                     print ('Perdeu! agora você possui', d)
                     r = input('Quer jogar novamente?(sim/não): ')
                     if r == 'sim':
@@ -422,6 +444,7 @@ if dois_jogadores == "não":
                 carta_nova = deck.pop()
                 mao.append(carta_nova)
                 print ('Sua carta é', carta_nova)
+                
                 if carta_nova == "J" or carta_nova == "Q" or carta_nova == "K":
                     soma+= 10
                 elif carta_nova == "A":
